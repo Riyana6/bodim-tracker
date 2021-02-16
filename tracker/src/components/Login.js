@@ -15,6 +15,16 @@ export default class Login extends Component {
         email: '', password:''
     };
 
+    credentialChange = event => {
+        this.setState({
+            [event.target.name] : event.target.value
+        });
+    };
+
+    resetLoginForm = () => {
+        this.setState(() => this.initialState);
+    };
+
     render() {
         const {email, password }= this.state;
         return (
@@ -31,7 +41,7 @@ export default class Login extends Component {
                                         <InputGroup.Prepend>
                                             <InputGroup.Text><FontAwesomeIcon icon={faEnvelope}/></InputGroup.Text>
                                         </InputGroup.Prepend>
-                                        <FormControl required autoComplete="off" type="text" name="email" value={email}
+                                        <FormControl required autoComplete="off" type="text" name="email" value={email} OnChange={this.credentialChange}
                                             className={"bg-dark text-white"} placeholder="Enter Email Address"/>
                                     </InputGroup>
                                 </Form.Group>
@@ -42,17 +52,19 @@ export default class Login extends Component {
                                         <InputGroup.Prepend>
                                             <InputGroup.Text><FontAwesomeIcon icon={faLock}/></InputGroup.Text>
                                         </InputGroup.Prepend>
-                                        <FormControl required autoComplete="off" type="password" name="password" value={password}
+                                        <FormControl required autoComplete="off" type="password" name="password" value={password} OnChange={this.credentialChange}
                                             className={"bg-dark text-white"} placeholder="Enter Password"/>
                                     </InputGroup>
                                 </Form.Group>
                             </Form.Row>
                         </Card.Body>
                         <Card.Footer style={{"text-align":"right"}}>
-                            <Button size="sm" type="button" variant="success">
+                            <Button size="sm" type="button" variant="success" onClick={this.validateUser}
+                                disabled={this.state.email.length === 0 || this.state.password.length === 0}>
                                 <FontAwesomeIcon icon={faSignInAlt}/> Login
                             </Button>{' '}
-                            <Button size="sm" type="button" variant="info">
+                            <Button size="sm" type="button" variant="info" onClick={this.resetLoginForm}
+                                disabled={this.state.email.length === 0 && this.state.password.length === 0 && this.state.error.length === 0}>
                                 <FontAwesomeIcon icon={faUndo}/> Reset
                             </Button>
                         </Card.Footer>
