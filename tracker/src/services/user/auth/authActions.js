@@ -1,10 +1,11 @@
 import {LOGIN_REQUEST, LOGOUT_REQUEST, SUCCESS, FAILURE} from './authTypes';
+import UserHome from '../../../components/userhome';
 
 export const authenticateUser = (email, password) => {
     return dispatch => {
         dispatch(loginRequest());
         if(email === "test" && password === "test") {
-            dispatch(success(true));
+            dispatch(success(UserHome));
         } else {
             dispatch(failure());
         }
