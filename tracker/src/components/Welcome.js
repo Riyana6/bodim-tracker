@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Jumbotron,Image,Col, Form,FormControl,Button,Navbar} from 'react-bootstrap';
+import {Jumbotron,Image,Col, Form,Button,Navbar} from 'react-bootstrap';
 import Footer from './Footer';
 import logo from './house.jpeg';
 
