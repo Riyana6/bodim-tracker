@@ -17,20 +17,12 @@ class Login extends Component {
 
     credentialChange = event => {
         this.setState({
-            [event.target.name] : event.target.value
+            [event.target.name] : event.target.value 
         });
     };
 
     validateUser = () => {
         this.props.authenticateUser(this.state.email, this.state.password);
-        setTimeout(() => {
-            if(this.props.auth.isLoggedIn) {
-                return this.props.history.push("/");
-            } else {
-                this.resetLoginForm();
-                this.setState({"error":"Invalid email and password"});
-            }
-        }, 500);
     };
 
     resetLoginForm = () => {
@@ -89,15 +81,4 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        auth:state.auth
-    }
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        authenticateUser: (email, password) => dispatch(authenticateUser(email, password))
-    };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;
